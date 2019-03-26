@@ -4,6 +4,7 @@ from scipy.stats import norm
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import pystan
 
 def mh(p_star, param_init, num_samples=5000, stepsize=1.0, W=0):
     param_init = np.array(param_init)

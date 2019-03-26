@@ -1,6 +1,6 @@
 
 data {
-        int<lower=0> N; // Number of samples
+    int<lower=0> N; // Number of samples
 	int<lower=0> D; // The original dimension
 	int<lower=0> K; // The latent dimension
 	matrix[N, D] X; // The data matrix
@@ -24,14 +24,14 @@ transformed parameters{
 }
 
 model {
-      tau ~ gamma(1, 1);
-      alpha ~ gamma(alpha0, beta0);				
-      for(k in 1:K) {
-        W[,k] ~ normal(mu_W, t_alpha[k]);
-      }	
-      for(n in 1:N){
-      	Z[n] ~ normal(0, 1);
-	X[n] ~ normal(W * Z[n]', t_tau);
-      }
+    tau ~ gamma(1, 1);
+    alpha ~ gamma(alpha0, beta0);
+    for(k in 1:K) {
+      W[,k] ~ normal(mu_W, t_alpha[k]);
+    }
+    for(n in 1:N){
+        Z[n] ~ normal(0, 1);
+    	X[n] ~ normal(W * Z[n]', t_tau);
+    }
 } 
 
