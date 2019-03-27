@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import pystan
 import pickle
 import os
-from sklearn.decomposition import PCA
 
 if __name__ == "__main__":
     data = np.loadtxt('./q4_pca.txt')

@@ -1,11 +1,4 @@
 import numpy as np
-import scipy as sp
-from scipy.stats import norm
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import pystan
-
 def mh(p_star, param_init, num_samples=5000, stepsize=1.0, W=0):
     param_init = np.array(param_init)
     if num_samples == 0:
@@ -34,6 +27,3 @@ def mh(p_star, param_init, num_samples=5000, stepsize=1.0, W=0):
                 x_curr = x_cand
         samples.append(x_curr)
     return samples
-
-if __name__ == "__main__":
-    pass

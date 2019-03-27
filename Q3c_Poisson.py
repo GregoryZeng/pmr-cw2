@@ -30,8 +30,16 @@ if __name__ == "__main__":
                   W=1000)
     print('sample size:', len(samples1))
     samples1_df = pd.DataFrame(samples1, columns=['x', 'y'])
-    ax = sns.scatterplot(data=samples1_df, x='x', y='y', s=10, )
-    ax.get_figure().savefig('poisson_x0_y0_e1_w1000.pdf')
+    samples1=np.array(samples1)
+    # ax = sns.scatterplot(data=samples1_df, x='x', y='y', s=10, )
+    # ax.get_figure().savefig('poisson_x0_y0_e1_w1000.pdf')
+    fig, ax = plt.subplots()
+    ax.scatter(x=samples1[:,0],y=samples1[:,1],s=10)
+    ax.set_xlabel('$\\alpha$')
+    ax.set_ylabel('$\\beta$')
+    # ax.legend('upper left')
+    fig.savefig('poisson_x0_y0_e1_w1000.pdf')
+
 
     print('mean:', samples1_df.mean())
     print('corrcoef:', np.corrcoef(x=np.array(samples1), rowvar=False))
