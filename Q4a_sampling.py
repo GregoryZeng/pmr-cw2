@@ -5,7 +5,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pystan
-
+import os
+import pickle
 
 if __name__ == "__main__":
     stan_code = """
@@ -38,7 +39,13 @@ if __name__ == "__main__":
           8.150985069051909226e-01]
     ys = [1, 0, 2, 1, 2]
 
-    sm = pystan.StanModel(model_code=stan_code)
+    if os.path.isfile('q4a.pkl'):
+        sm = pickle.load(open('q4a.pkl', 'rb'))
+    else:
+        sm = pystan.StanModel(model_code=stan_code)
+        with open('q4a.pkl', 'wb') as f:
+            pickle.dump(sm, f)
+
     results = sm.sampling(data={"N": 5, "xs": xs, "ys": ys},
                           iter=10000,
                           chains=1)
